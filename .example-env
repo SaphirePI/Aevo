@@ -15,3 +15,5 @@ WEEBSH_TOKEN=
 
 # Whether to boot a single shard.
 BOOT_SINGLE="true"
+
+SS_API_PORT=2020
