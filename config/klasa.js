@@ -22,7 +22,7 @@ module.exports = {
     providers: {
         default: 'mongodb',
         mongodb: {
-            connectionString: `mongodb://${user}:${pass}@${host}:${port}/`,
+            connectionString: `mongodb+srv://${user}:${pass}@${host}/`,
             db
         }
     },
