@@ -1,0 +1,17 @@
+# MongoDB credentials
+MONGO_USER=
+MONGO_PASS=
+MONGO_HOST=
+MONGO_PORT=
+
+# Discord Bot token
+DISCORD_TOKEN=
+
+# KSoft.Si token (https://api.ksoft.si/)
+KSOFT_TOKEN=
+
+# Weeb.sh token (https://weeb.sh)
+WEEBSH_TOKEN=
+
+# Whether to boot a single shard.
+BOOT_SINGLE="true"

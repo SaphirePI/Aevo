@@ -1,0 +1,10 @@
+node_modules
+.vscode
+config.json
+*.log
+.idea
+yarn.lock
+.env*
+*.env
+test*
+*.DS_STORE
