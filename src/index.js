@@ -4,4 +4,4 @@ require('dotenv').config({
 const Manager = require('../lib/Manager');
 const version = process.env.npm_package_gitHead || 'dev';
 
-new Manager(version).init()
+new Manager().init()
