@@ -18,5 +18,6 @@ module.exports = {
     inviteURL: 'https://saphire.io',
     repoURL: 'https://saphire.io/git',
     hasteURL: 'https://haste.saphire.io',
+    statusURL: 'https://aevo.statuspage.io',
     dailyPoints: 100
 };
