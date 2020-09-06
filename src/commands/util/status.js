@@ -26,7 +26,7 @@ module.exports = class extends Command {
             .setTitle(overview.status.description)
             .setColor(this.colors[overview.status.indicator] || INFORMATION);
 
-        const description = [`🏓 Websocket is ${msg.client.ws.ping}ms\n`];
+        const description = [`🏓 Websocket is ${msg.client.ws.ping}ms\n💾 Memory is ${Math.trunc(process.memoryUsage().rss/1024/1024) + 'MB'}\n`];
         for (const component of overview.components) {
             description.push(`${component.status === 'operational' ? success_tick : error} **${component.name}:** ${component.status.replace(/_/g, ' ')}`);
         }

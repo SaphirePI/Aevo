@@ -20,7 +20,7 @@ module.exports = class extends Command {
         const balance = this.client.config.dailyPoints;
         await msg.author.settings.sync();
         await msg.author.settings.update([
-            ['balance', msg.author.settings.get('balance') + balance],
+            ['stats.balance', msg.author.settings.get('stats.balance') + balance],
             ['lastDailyTimestamp', Date.now()]
         ]);
         if (msg.flagArgs.remind || msg.flagArgs.reminder || msg.flagArgs.remindme) {

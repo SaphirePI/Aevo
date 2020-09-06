@@ -19,9 +19,13 @@ module.exports = class extends Provider {
 
         // If full connection string is provided, use that, otherwise fall back to individual parameters
         const connectionString = this.client.options.providers.mongodb.connectionString || `mongodb://${connection.user}:${connection.password}@${connection.host}:${connection.port}/${connection.db}`;
-        const mongoClient = await Mongo.connect(connectionString,
-            mergeObjects(connection.options, { useNewUrlParser: true, useUnifiedTopology: true }));
-        this.client.console.log('[Mongo] Connected.');
+        //const connectionString = `mongodb://localhost:27017/klasa`;
+
+        const mongoClient = await Mongo.connect(
+            connectionString,
+            mergeObjects(connection.options, { useNewUrlParser: true, useUnifiedTopology: true })
+        );
+
         this.db = mongoClient.db(connection.db);
     }
 
@@ -32,8 +36,7 @@ module.exports = class extends Provider {
     }
 
     hasTable(table) {
-        return this.db.listCollections().toArray()
-            .then(collections => collections.some(col => col.name === table));
+        return this.db.listCollections().toArray().then(collections => collections.some(col => col.name === table));
     }
 
     createTable(table) {
@@ -47,17 +50,12 @@ module.exports = class extends Provider {
     /* Document methods */
 
     getAll(table, filter = []) {
-        if (filter.length) {
-            return this.db.collection(table).find({ id: { $in: filter } }, { _id: 0 })
-                .toArray();
-        }
-        return this.db.collection(table).find({}, { _id: 0 })
-            .toArray();
+        if (filter.length) return this.db.collection(table).find({ id: { $in: filter } }, { _id: 0 }).toArray();
+        return this.db.collection(table).find({}, { _id: 0 }).toArray();
     }
 
     getKeys(table) {
-        return this.db.collection(table).find({}, { id: 1, _id: 0 })
-            .toArray();
+        return this.db.collection(table).find({}, { id: 1, _id: 0 }).toArray();
     }
 
     get(table, id) {
@@ -90,7 +88,6 @@ module.exports = class extends Provider {
 
 };
 
-// eslint-disable-next-line no-extra-parens
 const resolveQuery = query => isObject(query) ? query : { id: query };
 
 function flatten(obj, path = '') {
@@ -104,5 +101,5 @@ function flatten(obj, path = '') {
 
 function parseEngineInput(updated) {
     return Object.assign({}, ...updated.map(entry => ({
-        [entry.key]: entry.value })));
+        [entry.data[0]]: entry.data[1] })));
 }
